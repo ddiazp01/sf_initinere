@@ -1,1 +1,20 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+body {
+	background-color: #eef1f5;
+}
+body > .container {
+	margin-top: 40px;
+	height: 200px;	
+	width: 330px;
+}
+body > .container > .card {
+	text-align: center;
+}
+body > .container > .card .alinear {
+	text-align: left;
+}
+body > .container > .card ul{
+	padding-left: 0;
+	margin-bottom: 10px;
+}

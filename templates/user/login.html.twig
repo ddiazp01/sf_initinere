@@ -2,36 +2,37 @@
 
 {% block body %}
 
-<div class="container">
-    <div class="card">
-        <form action= " {{ path ( 'login' ) }} " method= "post" >
-            <div class="card-header">
-                <h5 >¿Ya eres usuario?</h5>
-            </div>
-            <div class="card-body">
-                {% if error %}
-                    <div> {{ error.messageKey | trans ( error.messageData , 'security' ) }} </div>
-                {% endif %}
+    <div class="container">
+        <div class="card">
+            <form action= " {{ path ( 'login' ) }} " method= "post" >
+                <div class="card-header">
+                    <h5 >¿Ya eres usuario?</h5>
+                </div>
+                <div class="card-body">
+                    {% if error %}
+                        <div> {{ error.messageKey | trans ( error.messageData , 'security' ) }} </div>
+                    {% endif %}
 
-            <ul>
-            <input placeholder="Nombre de usuario" type= "text" id= "username" name= "_username" />
-            </ul>
-            <ul>
-            <input placeholder="Contraseña" type= "password" id= "password" name= "_password" />
-            </ul>
-            <ul>
-            <input type= "hidden" name= "_csrf_token" value= " {{ csrf_token ( 'authenticate' ) }} "/>
-            </ul>
-            
-            </div>
-            <div class="card-footer">
-            
-            <button type="submit" class="btn btn-success" >Entrar</button>
-                <br>
-                Si aún no lo eres, <a href=" {{ path ( 'register' ) }} ">registrate.</a>
-            </div>
-        </form>
+                    <ul>
+                        <input placeholder="Nombre de usuario" type= "text" id= "username" name= "_username" />
+                    </ul>
+                    <ul>
+                        <input placeholder="Contraseña" type= "password" id= "password" name= "_password" />
+                    </ul>
+                    <ul>
+                        <input type= "hidden" name= "_csrf_token" value= " {{ csrf_token ( 'authenticate' ) }} "/>
+                    </ul>
+                
+                </div>
+                <div class="card-footer">
+                
+                    <button type="submit" class="btn btn-success" >Entrar</button>
+                    <br>
+                    Si aún no lo eres, <a href=" {{ path ( 'register' ) }} ">registrate.</a>
+
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
 {% endblock %}
