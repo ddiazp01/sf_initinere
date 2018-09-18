@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="card">
+        {{ form_start(form) }}
+            <div class="card-header">
+                <h5 >Crear cuenta.</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                {{ form_widget(form.username, { 'attr': {'placeholder': 'Nombre de usuario' } }) }}
+                </ul>
+                <ul>
+                {{ form_widget(form.nombre, { 'attr': {'placeholder': 'Nombre' } }) }}
+                </ul>
+                <ul>
+                {{ form_widget(form.email, { 'attr': {'placeholder': 'Correo electronico' } }) }}
+    		    </ul>
+                <ul>
+                {{ form_widget(form.plainPassword.first, { 'attr': {'placeholder': 'Contraseña' } }) }}
+    		    </ul>
+                <ul>
+                {{ form_widget(form.plainPassword.second, { 'attr': {'placeholder': 'Repetir contraseña' } }) }}
+                </ul>
+                <ul>    
+                {{ form_widget(form.telefono, { 'attr': {'placeholder': 'Teléfono' } }) }}
+                </ul>
+                
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-success" >Registrar</button><br>    
+                Si ya estás registrado, haz clic <a href=" {{ path ( 'login' ) }} ">aquí.</a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+    <br><br>
+</div>
+
+
+{% endblock %}
+
+         

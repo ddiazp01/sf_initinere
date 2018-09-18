@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Puntosintermedios;
+use App\Entity\Provincia;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Puntosintermedios|null find($id, $lockMode = null, $lockVersion = null)
- * @method Puntosintermedios|null findOneBy(array $criteria, array $orderBy = null)
- * @method Puntosintermedios[]    findAll()
- * @method Puntosintermedios[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Provincia|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Provincia|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Provincia[]    findAll()
+ * @method Provincia[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PuntosintermediosRepository extends ServiceEntityRepository
+class ProvinciaRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Puntosintermedios::class);
+        parent::__construct($registry, Provincia::class);
     }
 
 //    /**
-//     * @return Puntosintermedios[] Returns an array of Puntosintermedios objects
+//     * @return Provincia[] Returns an array of Provincia objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PuntosintermediosRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Puntosintermedios
+    public function findOneBySomeField($value): ?Provincia
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

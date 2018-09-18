@@ -29,14 +29,14 @@ class Ciudad
     private $itinerarios;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Puntosintermedios", mappedBy="ciudad")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Provincia", inversedBy="ciudades")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $puntosintermedios;
+    private $provincia;
 
     public function __construct()
     {
         $this->itinerarios = new ArrayCollection();
-        $this->puntosintermedios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -87,30 +87,14 @@ class Ciudad
         return $this;
     }
 
-    /**
-     * @return Collection|Puntosintermedios[]
-     */
-    public function getPuntosintermedios(): Collection
+    public function getProvincia(): ?Provincia
     {
-        return $this->puntosintermedios;
+        return $this->provincia;
     }
 
-    public function addPuntosintermedio(Puntosintermedios $puntosintermedio): self
+    public function setProvincia(?Provincia $provincia): self
     {
-        if (!$this->puntosintermedios->contains($puntosintermedio)) {
-            $this->puntosintermedios[] = $puntosintermedio;
-            $puntosintermedio->addCiudad($this);
-        }
-
-        return $this;
-    }
-
-    public function removePuntosintermedio(Puntosintermedios $puntosintermedio): self
-    {
-        if ($this->puntosintermedios->contains($puntosintermedio)) {
-            $this->puntosintermedios->removeElement($puntosintermedio);
-            $puntosintermedio->removeCiudad($this);
-        }
+        $this->provincia = $provincia;
 
         return $this;
     }

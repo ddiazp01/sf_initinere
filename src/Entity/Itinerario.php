@@ -34,7 +34,7 @@ class Itinerario
     private $diasemana;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Usuario", mappedBy="itinerarios")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="itinerarios")
      */
     private $usuarios;
 
@@ -49,14 +49,15 @@ class Itinerario
     private $destino;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Puntosintermedios", inversedBy="itinerarios")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Ciudad")
      */
-    private $puntosintermedio;
+    private $pintermedios;
+
 
     public function __construct()
     {
         $this->usuarios = new ArrayCollection();
-        $this->puntosintermedio = new ArrayCollection();
+        $this->pintermedios = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -108,7 +109,7 @@ class Itinerario
         return $this->usuarios;
     }
 
-    public function addUsuario(Usuario $usuario): self
+    public function addUsuario(User $usuario): self
     {
         if (!$this->usuarios->contains($usuario)) {
             $this->usuarios[] = $usuario;
@@ -118,7 +119,7 @@ class Itinerario
         return $this;
     }
 
-    public function removeUsuario(Usuario $usuario): self
+    public function removeUsuario(User $usuario): self
     {
         if ($this->usuarios->contains($usuario)) {
             $this->usuarios->removeElement($usuario);
@@ -153,28 +154,29 @@ class Itinerario
     }
 
     /**
-     * @return Collection|Puntosintermedios[]
+     * @return Collection|Ciudad[]
      */
-    public function getPuntosintermedio(): Collection
+    public function getPintermedios(): Collection
     {
-        return $this->puntosintermedio;
+        return $this->pintermedios;
     }
 
-    public function addPuntosintermedio(Puntosintermedios $puntosintermedio): self
+    public function addPintermedio(Ciudad $pintermedio): self
     {
-        if (!$this->puntosintermedio->contains($puntosintermedio)) {
-            $this->puntosintermedio[] = $puntosintermedio;
+        if (!$this->pintermedios->contains($pintermedio)) {
+            $this->pintermedios[] = $pintermedio;
         }
 
         return $this;
     }
 
-    public function removePuntosintermedio(Puntosintermedios $puntosintermedio): self
+    public function removePintermedio(Ciudad $pintermedio): self
     {
-        if ($this->puntosintermedio->contains($puntosintermedio)) {
-            $this->puntosintermedio->removeElement($puntosintermedio);
+        if ($this->pintermedios->contains($pintermedio)) {
+            $this->pintermedios->removeElement($pintermedio);
         }
 
         return $this;
     }
+
 }
