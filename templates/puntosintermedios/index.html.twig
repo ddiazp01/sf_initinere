@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Puntosintermedios index{% endblock %}
+
+{% block body %}
+    <h1>Puntosintermedios index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for puntosintermedio in puntosintermedios %}
+            <tr>
+                <td>{{ puntosintermedio.id }}</td>
+                <td>
+                    <a href="{{ path('puntosintermedios_show', {'id': puntosintermedio.id}) }}">show</a>
+                    <a href="{{ path('puntosintermedios_edit', {'id': puntosintermedio.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('puntosintermedios_new') }}">Create new</a>
+{% endblock %}
