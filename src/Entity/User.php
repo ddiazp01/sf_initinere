@@ -144,7 +144,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return Collection|Itinerario[]
      */
-    public function getItinerarios(): Collection
+    public function getItinerarios()
     {
         return $this->itinerarios;
     }
