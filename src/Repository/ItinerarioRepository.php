@@ -19,32 +19,22 @@ class ItinerarioRepository extends ServiceEntityRepository
         parent::__construct($registry, Itinerario::class);
     }
 
-//    /**
-//     * @return Itinerario[] Returns an array of Itinerario objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function findByOrigenDestino($id_origen, $id_destino)
     {
         return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
+            ->innerJoin('i.origen','o')
+            ->innerJoin('i.destino','d')
+            ->where('i.origen = :origenID')
+            ->andWhere('i.destino = :destinoID')
+            ->setParameters([
+                'origenID' => $id_origen,
+                'destinoID' => $id_destino
+            ])
+            ->select('o.nombre as origen, d.nombre as destino, i.horasalida, i.horavuelta, i.diasemana')
+            ->groupBy('i.id')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Itinerario
-    {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
