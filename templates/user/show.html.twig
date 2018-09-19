@@ -1,26 +1,96 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
-
 {% block body %}
-    <h1>User</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ user.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class ="container" id="perfil">
+        <div class="perfil">
+            <h1 class="perfil">Perfil</h1>
 
-    <a href="{{ path('user_index') }}">back to list</a>
+            <div class="usuario">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Nombre de usuario</th>
+                            <td>{{ app.user.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td>{{ app.user.nombre }}</td>
+                        </tr>
+                        <tr>
+                            <th>Correo electrónico</th>
+                            <td>{{ app.user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Telefono</th>
+                            <td>{{ app.user.telefono }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+        <div class="vehiculo">
 
-    {{ include('user/_delete_form.html.twig') }}
+            {% if app.user.vehiculo is not defined %}
+            
+                <div class="container">
+                    <div class="card">
+                        {{ form_start(form) }}
+                            <a id="btnperfil" href="#">
+                                <div class="card-header">
+                                    <h5 >Añadir Vehiculo.</h5>
+                                </div>
+                            </a>
+                            <div id="formdir">
+                                <div class="card-body">
+                                    <ul>
+                                        {{ form_widget(form.marca, { 'attr': {'placeholder': 'Marca del Vehiculo'} }) }}
+                                    </ul>
+                                    <ul>
+                                        {{ form_widget(form.modelo, { 'attr': {'placeholder': 'Modelo del Vehiculo'} }) }}
+                                    </ul>
+                                    <ul>
+                                        {{ form_widget(form.numplazas, { 'attr': {'placeholder': 'Numero de plazas'} }) }}
+                                    </ul>
+                                
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-success" >Registrar</button>    
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+
+            {% else %}	
+
+                <h3 class="perfil">Vehiculo</h3>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Marca del Vehiculo</th>
+                            <td>{{ app.user.vehiculo.marca }}</td>
+                        </tr>
+                        <tr>
+                            <th>Modelo del Vehiculo</th>
+                            <td>{{ app.user.vehiculo.modelo }}</td>
+                        </tr>
+                        <tr>
+                            <th>Numero de plazas</th>
+                            <td>{{ app.user.vehiculo.numplazas }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                                            
+            {% endif %}
+
+        </div>
+
+        <br><br>
+    </div>
+
+
+
 {% endblock %}

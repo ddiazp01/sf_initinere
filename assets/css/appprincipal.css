@@ -18,3 +18,24 @@ body > .container > .card ul{
 	padding-left: 0;
 	margin-bottom: 10px;
 }
+body > #perfil > .vehiculo > .container > .card {
+	width: 320px;
+}
+body > #perfil > .vehiculo > .container {
+	text-align: center;
+}
+body > #perfil > .vehiculo .card-body > ul > input {
+	width: 220px;
+}
+body > #perfil {
+	width: 100%;
+}
+body > #perfil .card-body {
+	margin-left: -38px;
+}
+body > #perfil > .vehiculo .card-footer button {
+	text-align: center;
+}
+body a {
+	outline: none;
+}

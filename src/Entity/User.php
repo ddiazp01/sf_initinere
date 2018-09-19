@@ -46,11 +46,6 @@ class User implements UserInterface, \Serializable
     private $username;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Vehiculo", cascade={"persist", "remove"})
-     */
-    private $vehiculo;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Itinerario", inversedBy="usuarios")
      */
     private $itinerarios;
@@ -73,6 +68,11 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="array")
      */
     private $roles;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Vehiculo", inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $vehiculo;
 
     public function __construct() {
         $this->roles = array('ROLE_USER');
@@ -125,18 +125,6 @@ class User implements UserInterface, \Serializable
     public function setTelefono(string $telefono): self
     {
         $this->telefono = $telefono;
-
-        return $this;
-    }
-
-    public function getVehiculo(): ?Vehiculo
-    {
-        return $this->vehiculo;
-    }
-
-    public function setVehiculo(?Vehiculo $vehiculo): self
-    {
-        $this->vehiculo = $vehiculo;
 
         return $this;
     }
@@ -240,6 +228,18 @@ class User implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    public function getVehiculo(): ?Vehiculo
+    {
+        return $this->vehiculo;
+    }
+
+    public function setVehiculo(?Vehiculo $vehiculo): self
+    {
+        $this->vehiculo = $vehiculo;
+
+        return $this;
     }
 
 }

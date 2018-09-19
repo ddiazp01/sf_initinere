@@ -1,7 +1,9 @@
 <?php
 namespace App\Controller;
 use App\Entity\User;
+use App\Entity\Vehiculo;
 use App\Form\UserType;
+use App\Form\VehiculoType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,5 +59,35 @@ class UserController extends Controller
             'user/register.html.twig',
             array('form' => $form->createView())
         );
+    }
+
+    /**
+     * @Route("/perfil/{id}", name="perfil_show", methods="GET|POST")
+     */
+    public function show(User $user, Request $request): Response
+    {
+
+        $vehiculo = new Vehiculo();
+        $vehiculo->setUser($this->getUser());
+        $form = $this->createForm(VehiculoType::class, $vehiculo);
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        dump ($user);   
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $vehiculo->setUser($user);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($vehiculo);
+            $em->flush();
+
+            return $this->redirectToRoute('perfil_show' , array('id' => $this->getUser()->getId()));
+        }
+
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+            'vehiculo' => $vehiculo,
+            'form' => $form->createView(),
+        ]);
+
     }
 }
